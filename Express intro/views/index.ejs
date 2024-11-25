@@ -50,6 +50,7 @@
             <td>Gender</td>
             <td>Email</td>
             <td>Phone</td>
+            <td>Action</td>
         </tr>
         <% students.map((stu)=>{ %>
                 <tr>
@@ -59,6 +60,10 @@
                     <td><%= stu.gender %></td>
                     <td><%= stu.email %></td>
                     <td><%= stu.phone %></td>
+                    <td>
+                        <a href="/editStudent/<%= stu.id %>">Edit</a> ||
+                        <a href="/deleteStudent/<%= stu.id %>">Delete</a>
+                    </td>
                 </tr>
             <% }) %>
     </table>

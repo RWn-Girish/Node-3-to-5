@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center"> Edit Student Info</h1>
+    <form method="post" action="/editStudent">
+        <table align="center" border="1">
+            <tr>
+                <td>Id</td>
+                <td><input type="number" name="id" value="<%= student.id %>" ></td>
+            </tr>
+            <tr>
+                <td>Firstname:</td>
+                <td><input type="text" name="firstname" value="<%= student.firstname %>" ></td>
+            </tr>
+            <tr>
+                <td>Lastname:</td>
+                <td><input type="text" name="lastname" value="<%= student.lastname %>" ></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" value="<%= student.email %>" ></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td><input type="text" name="gender" value="<%= student.gender %>" ></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="number" name="phone" value="<%= student.phone %>" ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Edit Student" ></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
