@@ -76,8 +76,22 @@ app.get('/editStudent/:id', (req, res)=>{
     // console.log(studentRecord);
 });
 
-app.post('/editStudent', (req, res)=>{
-    console.log(req.body);
+app.post('/editStudent/:id', (req, res)=>{
+    const id = req.params.id;
+    const { firstname, lastname, email, gender, phone } = req.body;
+    students.filter((student)=>{
+        if(student.id == id){
+            student.id = id;
+            student.firstname = firstname;
+            student.lastname = lastname;
+            student.email = email;
+            student.gender = gender;
+            student.phone = phone
+        }
+        return student;
+    });
+
+    return res.redirect('/');
 })
 
 

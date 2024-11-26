@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1 align="center"> Edit Student Info</h1>
-    <form method="post" action="/editStudent">
+    <form method="post" action="/editStudent/<%= student.id %>">
         <table align="center" border="1">
             <tr>
                 <td>Id</td>
-                <td><input type="number" name="id" value="<%= student.id %>" ></td>
+                <td><input type="number" name="id" value="<%= student.id %>" disabled></td>
             </tr>
             <tr>
                 <td>Firstname:</td>
