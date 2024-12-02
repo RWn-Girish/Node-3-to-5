@@ -2,9 +2,11 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "mongoose": "^8.8.3",
     "nodemon": "^3.1.7"
   },
   "scripts": {
-    "middleware" : "nodemon middleware/index.js"
+    "middleware": "nodemon middleware/index.js",
+    "dbs": "nodemon DatabaseConnection/index.js"
   }
 }
