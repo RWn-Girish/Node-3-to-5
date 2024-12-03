@@ -7,7 +7,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.use(express.urlencoded());
 
 app.use('/user', require('./routes/userRoutes'));
 app.get('/', (req, res) => {
