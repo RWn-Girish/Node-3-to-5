@@ -1,0 +1,28 @@
+<a href="/user">Back</a>
+
+<h2 align="center">Edit User page</h2>
+
+<form method="post" action="">
+    <table align="center" border="1">
+        
+        <tr>
+            <td>Firstname:</td>
+            <td><input type="text" name="fname" value="<%= user.fname %>" ></td>
+        </tr>
+        <tr>
+            <td>Lastname:</td>
+            <td><input type="text" name="lname" value="<%= user.lname %>" ></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="email" value="<%= user.email %>" ></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input type="number" name="phoneNo" value="<%= user.phoneNo %>" ></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update User" ></td>
+        </tr>
+    </table>

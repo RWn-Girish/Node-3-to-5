@@ -12,10 +12,6 @@
             <td><input type="text" name="lname" ></td>
         </tr>
         <tr>
-            <td>Gender:</td>
-            <td><input type="text" name="gender" ></td>
-        </tr>
-        <tr>
             <td>Email:</td>
             <td><input type="email" name="email" ></td>
         </tr>
@@ -46,8 +42,8 @@
                     <td><%= user.email %></td>
                     <td><%= user.phoneNo %></td>
                     <td>
-                        <a href="">Edit</a> ||
-                        <a href="">Delete</a>
+                        <a href="/user/editUser/<%= user.id%>">Edit</a> ||
+                        <a href="/user/deleteUser/<%= user.id%>">Delete</a>
                     </td>
                 </tr>
             <% }) %>

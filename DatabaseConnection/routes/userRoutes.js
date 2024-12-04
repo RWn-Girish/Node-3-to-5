@@ -18,6 +18,31 @@ userRoutes.post('/addUser', async(req, res)=>{
         console.log('Somthing Wrong...');
         return res.redirect('/user');
     }
-})
+});
+
+userRoutes.get('/deleteUser/:id', async(req, res)=>{
+    // console.log(req.params.id);
+    let rec = await User.findById(req.params.id);
+    if(rec){
+        await User.findByIdAndDelete(req.params.id);
+        console.log('Delete Record Success');
+        return res.redirect('/user');
+    }
+    else{
+        console.log("Sometghing wrong");
+        return res.redirect("/user");
+    }
+});
+
+userRoutes.get("/editUser/:id", async(req, res)=>{
+    let rec = await User.findById(req.params.id);
+    if(rec){
+        return res.render('editUser', {user: rec})
+    }
+    else{
+        console.log("Sometghing wrong");
+        return res.redirect("/user");
+    }
+});
 
 module.exports = userRoutes;
