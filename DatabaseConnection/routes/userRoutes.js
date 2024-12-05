@@ -45,4 +45,16 @@ userRoutes.get("/editUser/:id", async(req, res)=>{
     }
 });
 
+userRoutes.post('/updateUser/:id', async(req, res) => {
+    let rec = await User.findById(req.params.id);
+    if(rec){
+            await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
+            console.log('Update Record Success');
+            return res.redirect('/user');
+    }else{
+        console.log('Something Wrong');
+        return res.redirect('back');
+    }
+})
+
 module.exports = userRoutes;
