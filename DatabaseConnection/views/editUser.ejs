@@ -22,7 +22,22 @@
             <td><input type="number" name="phoneNo" value="<%= user.phoneNo %>" ></td>
         </tr>
         <tr>
+            <td>Gender:</td>
+            <td>
+                <input type="radio" name="gender" value="male" <% if(user.gender == 'male') { %> checked
+                    <% } %> > Male
+                <input type="radio" name="gender" value="female" <% if(user.gender == 'female'){ %> checked <% } %> > Female
+            </td>
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="Update User" ></td>
         </tr>
     </table>
+
+    <!-- 
+    <% user.hobbie.includes('music') { %>
+    checked
+    <% } %>
+    
+    -->

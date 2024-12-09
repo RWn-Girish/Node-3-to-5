@@ -11,6 +11,12 @@ const userSchema = mongoose.Schema({
     },
     phoneNo: {
         type: Number 
+    },
+    gender: {
+        type: String
+    },
+    hobby: {
+        type: Array
     }
 });
 
