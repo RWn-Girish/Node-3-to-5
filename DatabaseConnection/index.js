@@ -8,6 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded());
+app.use("/uploads", express.static(path.join(__dirname, 'uploads')))
 
 app.use('/user', require('./routes/userRoutes'));
 app.use('/product', require('./routes/productRoutes'))

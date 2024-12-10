@@ -32,5 +32,33 @@
         </tr>
     </table>
     <hr>
+    <table align="center" border="1">
+        <tr>
+            <td>#</td>
+            <td>title</td>
+            <td>Desc</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Image</td>
+            <td>Actions</td>
+        </tr>
+        <% products.map((product)=> { %>
+            <tr>
+                <td><%= product.id %></td>
+                <td><%= product.title %></td>
+                <td><%= product.desc %></td>
+                <td><%= product.category %></td>
+                <td><%= product.price %></td>
+                <td>
+                    <% if(product.productImage != "" ) { %>
+                        <img src="<%= product.productImage %>"  height="100"/>
+                    <% } %>
+                </td>
+                <td><button><a>Edit </a></button> || 
+                    <button><a href="/product/delete/<%= product.id %>">Delete</a></button></td>
+            </tr>
+        <% }) %>
+
+    </table>
     
 </form>
