@@ -43,6 +43,28 @@ productRoutes.get('/delete/:id', async (req, res) => {
         console.log('Somthing Wrong');
         return res.redirect('/product');
     }
+});
+
+productRoutes.get("/edit/:id", async (req, res) => {
+    let rec = await Product.findById(req.params.id);
+    if(rec){
+        return res.render('editProduct', {product: rec})
+    }
+});
+
+productRoutes.post("/updateProduct/:id",Product.uploadImage, async(req, res) => {
+    let rec = await Product.findById(req.params.id);
+    if(rec){
+        if(req.file){
+            let imagepath = path.join(__dirname, "..", rec.productImage)
+            await fs.unlinkSync(imagepath); 
+            imagepath = `/uploads/products/${req.file.filename}`
+            req.body.productImage = imagepath;
+        }
+        await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        console.log('Update Success');
+        return res.redirect("/product");
+    }
 })
 
 module.exports = productRoutes;

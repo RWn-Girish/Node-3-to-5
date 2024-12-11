@@ -54,7 +54,7 @@
                         <img src="<%= product.productImage %>"  height="100"/>
                     <% } %>
                 </td>
-                <td><button><a>Edit </a></button> || 
+                <td><button><a href="/product/edit/<%= product.id %>" >Edit </a></button> || 
                     <button><a href="/product/delete/<%= product.id %>">Delete</a></button></td>
             </tr>
         <% }) %>

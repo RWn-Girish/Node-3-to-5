@@ -1,0 +1,35 @@
+<h2 align="center">Prduct page</h2>
+
+<form method="post" action="/product/updateProduct/<%= product.id %>" enctype="multipart/form-data">
+    <table align="center" border="1">
+        
+        <tr>
+            <td>Title:</td>
+            <td><input type="text" name="title" value="<%= product.title %>" ></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" name="desc" value="<%= product.desc %>" ></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td><input type="text" name="category" value="<%= product.category %>" ></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="number" name="price" value="<%= product.price %>" ></td>
+        </tr>
+        <tr>
+            <td>Upload Image:</td>
+            <td>
+                <input type="file" name="productImage" >
+            </td>
+            <td>
+                <img src="<%= product.productImage %>" height="100"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit Product" ></td>
+        </tr>
+    </table>
