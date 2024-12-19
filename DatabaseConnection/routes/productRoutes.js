@@ -33,9 +33,13 @@ productRoutes.get('/delete/:id', async (req, res) => {
     let rec = await Product.findById(req.params.id);
     // console.log(rec);
     if(rec){
-        let imagepath = path.join(__dirname, "..", rec.productImage)
+        try {
+            let imagepath = path.join(__dirname, "..", rec.productImage)
         // console.log(imagepath);
         await fs.unlinkSync(imagepath);
+        } catch (error) {
+            console.log(error)
+        }
         await Product.findByIdAndDelete(req.params.id);
         console.log("Delete Success");
         return res.redirect('/product');

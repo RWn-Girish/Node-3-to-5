@@ -1,0 +1,168 @@
+<%- include('header.ejs') %>
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Edit Admin Info</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" method="POST" action="/admin/editAdmin/<%= editAdmin.id %>" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Admin Personal Info</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">First
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="fname" name="firstname"
+                                            value="<%= editAdmin.firstname %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="lname" name="lastname" value="<%= editAdmin.lastname %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lname"
+                                        class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email" name="email" value="<%= editAdmin.email %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lname"
+                                        class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="lname" name="password"
+                                        value="<%= editAdmin.password %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email1"
+                                        class="col-sm-3 text-right control-label col-form-label">Gender </label>
+                                    <div class="col-md-9">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio"  name="gender" value="Male" <% if(editAdmin.gender == "Male"){ %>checked <% } %> >
+                                            <label class="custom-control-label">
+                                                Male</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio"  name="gender" value="Female" <% if(editAdmin.gender == "Female"){ %>checked <% } %> >
+                                            <label class="custom-control-label">
+                                                Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Hobby</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="hobby[]" value="Reading"
+                                                id="customControlAutosizing1" <% if(editAdmin.hobby.includes("Reading") ){ %>checked <% } %> >
+                                            <label class="custom-control-label"
+                                                for="customControlAutosizing1">Reading</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="hobby[]" value="Music"
+                                                id="customControlAutosizing2" <% if(editAdmin.hobby.includes("Music") ){ %>checked <% } %>  >
+                                            <label class="custom-control-label"
+                                                for="customControlAutosizing2">Music</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="hobby[]" value="Advanture"
+                                                id="customControlAutosizing3" <% if(editAdmin.hobby.includes("Advanture") ){ %>checked <% } %>  >
+                                            <label class="custom-control-label"
+                                                for="customControlAutosizing3">Advanture</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact
+                                        No</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="cono1" name="contactno"
+                                        value="<%= editAdmin.contactno %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cono1"
+                                        class="col-sm-3 text-right control-label col-form-label">Info</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="cono1" name="info"
+                                        value="<%= editAdmin.info %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">File Upload</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="profileImage"
+                                                >
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                                <img src="<%= editAdmin.profileImage %>" height="100" />
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Edit Admin</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <%- include('footer.ejs') %>
