@@ -2,12 +2,14 @@ const express = require('express');
 const path = require('path');
 const port = 5555;
 const db = require("./config/dbConnection");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded());
+app.use(cookieParser());
 app.use("/assets", express.static(path.join(__dirname, 'assets')))
 app.use("/uploads", express.static(path.join(__dirname, 'uploads')))
 

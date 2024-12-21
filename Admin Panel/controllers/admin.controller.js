@@ -2,8 +2,14 @@ const Admin = require('../models/admin.model');
 const path = require('path');
 const fs = require('fs');
 
-exports.addAdminPage = (req, res) => {
-    return res.render('add_admin');
+exports.addAdminPage = async (req, res) => {
+    if (req.cookies.admin == undefined || req.cookies.admin._id == undefined) {
+        return res.redirect("/")
+    } else {
+        let loginAdmin = await Admin.findById(req.cookies.admin._id);
+        return res.render('add_admin', { loginAdmin });
+    }
+
 };
 
 exports.viewAllAdmins = async (req, res) => {
@@ -71,7 +77,7 @@ exports.updateAdmin = async (req, res) => {
             } else {
                 req.body.profileImage = record.profileImage
             }
-            await Admin.findByIdAndUpdate(req.params.id, req.body, {new: true});
+            await Admin.findByIdAndUpdate(req.params.id, req.body, { new: true });
             console.log("Update Record Success...");
             return res.redirect("/admin/viewalladmin")
         } else {
