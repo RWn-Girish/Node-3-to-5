@@ -1,4 +1,6 @@
+const mailConfig = require("../config/mailConfig");
 const Admin = require("../models/admin.model");
+const otpGenerator = require("otp-generator");
 
 exports.logout = (req, res) => {
     res.clearCookie("admin");
@@ -48,4 +50,40 @@ exports.checkedLogin = async (req, res) => {
         console.log(error);
         return res.redirect("/")
     }
+};
+
+
+exports.forgotPasswordPage = (req, res) => {
+    try {
+        return res.render("forgotPassword/forgotpass")
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/")
+    }
+};
+
+exports.sendOtp = async (req, res) => {
+    // console.log(req.body.email)
+    // let otp = Math.floor(Math.random() * 10000)
+
+    // password : jwrf chkk rsbo elmf
+    let otp = otpGenerator.generate(5, {
+        upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false
+    });
+
+    let mailInfo = {
+        from: 'rw3.girish.gk@gmail.com',
+        to: `ashishdhola0.7@gmail.com`,
+        subject: "Send OTP for Forgotpassword",
+        html: `
+            <h2>Your OTP is ${otp}. vlaid only 5 minutes.</h2>
+        `
+    }
+
+    await mailConfig(mailInfo);
+
+return res.redirect("/");
+    // console.log(otp);
 }
