@@ -75,7 +75,7 @@ exports.sendOtp = async (req, res) => {
 
     let mailInfo = {
         from: 'rw3.girish.gk@gmail.com',
-        to: `ashishdhola0.7@gmail.com`,
+        to: `${req.body.email}`,
         subject: "Send OTP for Forgotpassword",
         html: `
             <h2>Your OTP is ${otp}. vlaid only 5 minutes.</h2>
@@ -83,7 +83,69 @@ exports.sendOtp = async (req, res) => {
     }
 
     await mailConfig(mailInfo);
-
-return res.redirect("/");
+    res.cookie('otp', otp);
+    res.cookie('email', req.body.email);
+return res.redirect("/verify-otp");
     // console.log(otp);
 }
+
+
+exports.verfiyOTPpage = (req, res) => {
+    try {
+        return res.render("forgotPassword/otp")
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/")
+    }
+};
+
+exports.verfiyOTP = async (req, res)=> {
+    try {
+        let otp = req.cookies.otp;
+        if(otp == req.body.otp){
+            return res.redirect("/newpassword");
+        }else{
+            return res.redirect("back")
+        }
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/")
+    }
+};
+
+exports.newPasswordPage = (req, res) => {
+    try {
+        return res.render("forgotPassword/newPassword")
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/")
+    }
+};
+
+exports.updatePassword = async(req, res)=> {
+    try {
+        let email = req.cookies.email;
+        if(req.body.password == req.body.conf_password){
+            let admin = await Admin.findOne({email: email});
+            admin.password = req.body.password;
+            await admin.save();
+            res.clearCookie("otp");
+            res.clearCookie("email");
+            return res.redirect("/");
+
+        }else{
+            return res.redirect("back")
+        }
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/")
+    }
+};
+
+
+/*
+    Blog Project
+    1. Auth
+    2. CRUD with Blog => 
+
+*/
