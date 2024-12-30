@@ -7,7 +7,7 @@ passport.use( new LocalStrategy({ usernameField: 'email' },
     async (email, password, done) => {
             let loginAdmin = await Admin.findOne({email: email});
             if(loginAdmin){
-                    if(password == loginAdmin.password){
+                    if(password === loginAdmin.password){
                             done(null, loginAdmin);
                     }else{
                         done(null, false);
@@ -24,10 +24,17 @@ passport.serializeUser((admin, cb)=>{
 })
 
 passport.deserializeUser(async (id, cb)=> {
-    let record = await Admin.findById(id)
-    if(record){
-        cb(null, record);
+   let user =  await Admin.findById(id)
+   cb(null, user);
+});
+
+passport.validateUser = (req, res, next) => {
+    console.log(req.isAuthenticated());
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        return res.redirect("/")
     }
-})
+}
 
 module.exports = passport;

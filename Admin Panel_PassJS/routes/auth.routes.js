@@ -2,12 +2,13 @@ const express = require('express');
 
 const authRoutes = express.Router();
 const { loginPage, dashBoard, checkedLogin, logout, updatePassword, forgotPasswordPage, sendOtp, verfiyOTPpage, verfiyOTP, newPasswordPage } = require("../controllers/auth.controller");
+const passport = require('passport');
 
 
 authRoutes.get("/", loginPage);
 
-authRoutes.post("/checkedLogin", checkedLogin);
-authRoutes.get("/dashboard", dashBoard);
+authRoutes.post("/checkedLogin", passport.authenticate('local', {failureRedirect: "/"}),checkedLogin);
+authRoutes.get("/dashboard", passport.validateUser, dashBoard);
 authRoutes.get("/logout", logout);
 
 authRoutes.get("/forgot-password", forgotPasswordPage);
