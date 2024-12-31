@@ -9,14 +9,8 @@ exports.addAdminPage = async (req, res) => {
 };
 
 exports.viewAllAdmins = async (req, res) => {
-
-    if (req.cookies.admin == undefined || req.cookies.admin._id == undefined) {
-        return res.redirect("/")
-    } else {
-        let loginAdmin = await Admin.findById(req.cookies.admin._id);
         let admins = await Admin.find();
-        return res.render('view_allAdmins', { admins, loginAdmin });
-    }
+        return res.render('view_allAdmins', { admins });
 };
 
 

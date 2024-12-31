@@ -3,16 +3,25 @@ const Admin = require("../models/admin.model");
 const otpGenerator = require("otp-generator");
 
 exports.logout = (req, res) => {
-    res.clearCookie("admin");
-    return res.redirect("/");
+    req.session.destroy((err)=>{
+        if(err){
+            console.log(err);
+        }
+        return res.redirect("/");
+    })
 };
 
 exports.loginPage = (req, res) => {
+    if(req.isAuthenticated()){
+        return res.redirect("/dashboard");
+    }
     return res.render("login");
 };
 
 
 exports.dashBoard =  (req, res) => {
+
+    // console.log(req.user);
         return res.render("dashboard");
 };
 

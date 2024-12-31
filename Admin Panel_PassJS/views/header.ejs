@@ -218,7 +218,7 @@
                                     src="/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                  ADMIN NAME </a>
+                                  <%= locals.admin.firstname %>  <%= locals.admin.lastname %></a>
                                 
                                 
                                 <div class="dropdown-divider"></div>
@@ -266,7 +266,7 @@
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Admin
                                         </span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/viewalladmin" aria-expanded="false"><i
+                                        href="/admin/view" aria-expanded="false"><i
                                             class="mdi mdi-border-inside"></i><span class="hide-menu">View All Admins</span></a>
                                 </li>
                             </ul>

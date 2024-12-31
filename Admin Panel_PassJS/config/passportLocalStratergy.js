@@ -29,12 +29,18 @@ passport.deserializeUser(async (id, cb)=> {
 });
 
 passport.validateUser = (req, res, next) => {
-    console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         next();
     }else{
         return res.redirect("/")
     }
+}
+
+passport.setLocalUser = (req, res, next) => {
+    if(req.isAuthenticated()){
+        res.locals.admin = req.user;
+    }
+    next();
 }
 
 module.exports = passport;

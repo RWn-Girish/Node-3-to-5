@@ -5,7 +5,7 @@ const adminRoutes = express.Router();
 const passport = require("passport");
 
 adminRoutes.get("/add",  passport.validateUser, addAdminPage)
-adminRoutes.get("/viewalladmin", viewAllAdmins);
+adminRoutes.get("/view", passport.validateUser, viewAllAdmins);
 
 adminRoutes.post("/add-admin", Admin.uploadImage, addNewAdmin);
 
