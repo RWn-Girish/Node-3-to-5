@@ -25,9 +25,11 @@ exports.addNewAdmin = async (req, res) => {
         let newAdmin = await Admin.create(req.body);
         if (newAdmin) {
             console.log("New Admin Added...");
+            req.flash("success", 'Admin Added');
             return res.redirect("back")
         } else {
             console.log("Somthing Wrong...");
+            req.flash("error", 'Admin not Added');
             return res.redirect("back")
         }
 

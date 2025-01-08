@@ -27,9 +27,11 @@ exports.dashBoard =  (req, res) => {
 
 exports.checkedLogin = async (req, res) => {
     try {
+            req.flash('success', 'Login Success...')
             return res.redirect("/dashboard")
     } catch (error) {
         console.log(error);
+        req.flash('error', 'Login Failed')
         return res.redirect("/")
     }
 };
