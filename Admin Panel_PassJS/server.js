@@ -37,6 +37,7 @@ app.use(flashConnect.setFalsh);
 
 app.use("/", require("./routes/auth.routes"));
 app.use("/admin", require('./routes/admin.routes'));
+app.use("/category", passport.validateUser, require('./routes/category.routes'));
 
 
 app.listen(port, () => {
