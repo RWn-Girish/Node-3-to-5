@@ -39,6 +39,7 @@ app.use("/", require("./routes/auth.routes"));
 app.use("/admin", require('./routes/admin.routes'));
 app.use("/category", passport.validateUser, require('./routes/category.routes'));
 app.use("/subcategory", passport.validateUser, require('./routes/subcategory.routes'));
+app.use("/extracategory", passport.validateUser, require('./routes/extracategory.routes'));
 
 
 app.listen(port, () => {

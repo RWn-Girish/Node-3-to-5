@@ -43,17 +43,39 @@
     <script src="/assets/js/pages/chart/chart-page-init.js"></script>
     <script>
         <% if(locals.flash.success.length > 0){ %>
-            Swal.fire({
-            title: "<%= locals.flash.success %>",
-            icon: "success"
-        });
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+            icon: "success",
+            title: "<%= locals.flash.success %>"
+            });
        <% } %>
 
         <% if(locals.flash.error.length > 0){ %>
-            Swal.fire({
-            title: "<%= locals.flash.error %>",
-            icon: "error"
-        });
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+            icon: "error",
+            title: "<%= locals.flash.error %>"
+            });
        <% } %>
         
     </script>

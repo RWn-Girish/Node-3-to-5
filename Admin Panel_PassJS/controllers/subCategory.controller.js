@@ -12,7 +12,6 @@ exports.addSubCategoryPage = async(req, res) => {
     }
 }
 
-
 exports.addSubCategory = async(req, res) => {
     try {
         let newSubCategory = await SubCategory.create(req.body);
@@ -35,6 +34,17 @@ exports.getAllSubCategoires = async(req, res) => {
         let subCategories = await SubCategory.find().populate('categoryId');
         // console.log(subCategories)
         return res.render("subcategory/view_subcategory", {subCategories});
+    } catch (error) {
+        console.log(error);
+        return res.redirect("back");
+    }
+}
+
+exports.editSubCategory = async(req, res) => {
+    try {
+        let subCategory = await SubCategory.findById(req.params.id);
+        let categories = await Category.find();
+        return res.render('subcategory/edit_subcategory', {categories, subCategory});
     } catch (error) {
         console.log(error);
         return res.redirect("back");

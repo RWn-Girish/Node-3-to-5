@@ -1,10 +1,4 @@
 <%- include('../header.ejs') %>
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -12,7 +6,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">All Sub Category</h4>
+                    <h4 class="page-title">Edit Sub Category</h4>
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -35,41 +29,49 @@
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title m-b-0">Sub Category Info</h5>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Category Image</th>
-                                    <th scope="col">Sub Category Name</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% subCategories.map((subCategory, index)=> { %>
-                                    <tr>
-                                        <th scope="row"><%= index+1 %></th>
-                                        <td><%= subCategory.categoryId.categoryName %></td>
-                                        <td><img src="<%= subCategory.categoryId.categoryImage %>" height="100" /></td>
-                                        <td><%= subCategory.subCategory %></td>
-                                        <td>
-                                            <a href="/subcategory/edit-subcategory/<%= subCategory.id%>"> <i class="far fa-edit"></i> </a> ||
-                                            <a href="/"> <i class="fas fa-trash"></i> </a> 
-                                        </td>
-                                    </tr>
-                                    <% }) %>
+                        <form class="form-horizontal" method="POST" action="/subcategory/update-subcategory/">
+                            <div class="card-body">
+                                <h4 class="card-title">Sub Category Info</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="categoryId">
+                                            <% for(let category of categories) { %>
+                                                <option value="<%= category.id %>" <% if(category.id == subCategory.categoryId) { %> selected <% } %> > <%= category.categoryName %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Sub Category</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" id="fname" name="subCategory"
+                                            value="<%= subCategory.subCategory %>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            </tbody>
-                        </table>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Add Sub Category</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
+
+
                 </div>
+
             </div>
+
             <!-- ============================================================== -->
             <!-- End PAge Content -->
             <!-- ============================================================== -->
@@ -83,5 +85,6 @@
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
+        <!-- ============================================================== -->
         <!-- ============================================================== -->
         <%- include('../footer.ejs') %>
