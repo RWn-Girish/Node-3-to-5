@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <h2>Add User Details</h2>
+        <form method="post" action="/addUser">
+            <table border="1">
+                <tr>
+                    <td>Id: </td>
+                    <td><input type="number" name="id" /></td>
+                </tr>
+                <tr>
+                    <td>FirstName: </td>
+                    <td><input type="text" name="firstname" /></td>
+                </tr>
+                <tr>
+                    <td>LastName: </td>
+                    <td><input type="text" name="lastname" /></td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td><input type="text" name="email" /></td>
+                </tr>
+                <tr>
+                    <td>Phone No: </td>
+                    <td><input type="text" name="phone" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add User" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div align="center">
+        <h2>Users Details</h2>
+        <table border="1">
+            <tr>
+                <th>#</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            <tbody>
+                <% users.map((user) => { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.firstname %></td>
+                        <td><%= user.lastname %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.phone %></td>
+                        <td><a href="/editUser/<%= user.id %>">Edit</a></td>
+                        <td><a href="/deleteUser/<%= user.id %>">Delete</a></td>
+                    </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
